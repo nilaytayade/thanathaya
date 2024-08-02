@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Item List</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Roboto Condensed", sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        /* background-color: #000000; */
+        background-image: url("https://png.pngtree.com/background/20220718/original/pngtree-love-face-emoji-wallpaper-background-picture-image_1661640.jpg");
+        /* background-image: url("https://res.cloudinary.com/dzhpx2alw/image/upload/v1722547940/Screenshot_2024-08-02_030135_zty0bi.png"); */
+
+        background-size: cover; /* Ensures the background image covers the viewport */
+        background-position: center; /* Centers the background image */
+        background-attachment: fixed; /* Keeps the background fixed when scrolling */
+        background-repeat: no-repeat; /* Prevents the image from repeating */
+      }
+
+      .container {
+        max-width: 600px;
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .item {
+        border: 1px solid #000000;
+        box-sizing: border-box;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 4px;
+        background-color: #fafafa;
+      }
+
+      @media (max-width: 600px) {
+        .container {
+          padding: 10px;
+        }
+
+        .item {
+          padding: 8px;
+          margin: 8px 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <h1
+      style="
+        background-color: rgb(255, 255, 255);
+        border-radius: 5px;
+        border: 1px solid black;
+      "
+    >
+      Thana thaya🥺?
+    </h1> -->
+    <img
+      style="width: 100%; background-color: #000000"
+      src="https://res.cloudinary.com/dzhpx2alw/image/upload/v1722547940/Screenshot_2024-08-02_030135_zty0bi.png"
+      alt=""
+    />
+
+    <div class="container">
+      <% if (items && items.length) { %> <% items.forEach(function(item) { %>
+      <%- include('partials/card', { data: item }) %> <% }); %> <% } else { %>
+      <p>No items found.</p>
+      <% } %>
+      <!-- <div style="height: 10px"></div> -->
+    </div>
+  </body>
+</html>
