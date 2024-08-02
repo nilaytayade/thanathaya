@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dynamic Card</title>
-    <!-- Link to Google Fonts for Roboto Condensed -->
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap"
       rel="stylesheet"
@@ -18,11 +17,10 @@
         padding: 16px;
         border-radius: 8px;
         max-width: 400px;
-        margin: auto;
-        position: relative;
-        padding-bottom: 10px;
+        margin: 16px auto; /* Center the card horizontally */
         background-color: #ffffff;
         opacity: 1;
+        position: relative;
       }
       .card img {
         max-width: 100%;
@@ -65,10 +63,12 @@
         z-index: 1000;
         display: none;
       }
+
       .overlay img {
         max-width: 90%;
         max-height: 90%;
       }
+
       .close-btn {
         position: absolute;
         top: 20px;
@@ -77,28 +77,86 @@
         color: white;
         cursor: pointer;
       }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        padding: 8px 12px;
+        margin: 16px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        color: white;
+        font-size: 16px;
+        text-decoration: none;
+      }
+      .btn-whatsapp {
+        background-color: #25d366;
+      }
+      .btn-whatsapp img {
+        margin-right: 8px;
+      }
+      .btn-maps {
+        background-color: #4285f4;
+      }
+      .btn-maps img {
+        margin-right: 8px;
+      }
+      .price {
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+      }
+      .button-container {
+        display: flex;
+        gap: 8px;
+        margin: 16px 0;
+      }
     </style>
   </head>
   <body>
     <div class="card">
       <% if (data) { %>
       <h2><%= data.name %></h2>
-      <p>Contact No: <%= data.contact %></p>
-      <p>Location: <%= data.location %></p>
-      <p>Price: <%= data.price %></p>
+      <div class="button-container">
+        <a
+          href="https://wa.me/<%= data.contact %>"
+          class="btn btn-whatsapp"
+          target="_blank"
+        >
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+            alt="WhatsApp Logo"
+            width="20"
+            height="20"
+          />
+          WhatsApp
+        </a>
+        <a
+          href="https://www.google.com/maps/search/?api=1&query=<%= encodeURIComponent(data.location) %>"
+          class="btn btn-maps"
+          target="_blank"
+        >
+          <img
+            src="https://www.logo.wine/a/logo/Google_Maps/Google_Maps-Icon-Logo.wine.svg"
+            alt="Google Maps Logo"
+            width="20"
+            height="20"
+          />
+          Location
+        </a>
+      </div>
+      <p class="price">Price: <%= data.price %></p>
       <% if (data.mess_photo) { %>
       <img
         src="<%= data.mess_photo %>"
         alt="Top Right Image"
         class="top-right-image"
-        class="expandable-image"
       />
       <% } %> <% if (data.menu_photo && data.menu_photo.length > 0) { %>
       <div class="static-image">
         <img
           src="<%= data.menu_photo[0] %>"
           alt="Static Image"
-          class="expandable-image"
         />
       </div>
       <div class="scrollable-images">
@@ -106,7 +164,6 @@
         <img
           src="<%= image %>"
           alt="Scrollable Image <%= index %>"
-          class="expandable-image"
         />
         <% } %> <% }); %>
       </div>
@@ -119,29 +176,36 @@
     <div class="overlay">
       <span class="close-btn">&times;</span>
       <img src="" alt="Expanded Image" />
-    </div>
+    </div>    
+
     <div style="height: 10px"></div>
     <script>
-      document.querySelectorAll(".expandable-image").forEach((image) => {
-        image.addEventListener("click", function () {
-          document.querySelector(".overlay img").src = this.src;
-          document.querySelector(".overlay").style.display = "flex";
+      // Function to handle image click and show the overlay
+      document.querySelectorAll('.scrollable-images img, .static-image img').forEach(img => {
+        img.addEventListener('click', function() {
+          const overlay = document.querySelector('.overlay');
+          const overlayImage = overlay.querySelector('img');
+          
+          // Set the src of the overlay image to the clicked image src
+          overlayImage.src = this.src;
+          
+          // Display the overlay
+          overlay.style.display = 'flex';
         });
       });
-
-      document
-        .querySelector(".close-btn")
-        .addEventListener("click", function () {
-          document.querySelector(".overlay").style.display = "none";
-        });
-
-      document
-        .querySelector(".overlay")
-        .addEventListener("click", function (e) {
-          if (e.target !== this.querySelector("img")) {
-            this.style.display = "none";
-          }
-        });
+    
+      // Function to close the overlay
+      document.querySelector('.overlay .close-btn').addEventListener('click', function() {
+        document.querySelector('.overlay').style.display = 'none';
+      });
+    
+      // Close overlay if user clicks outside the image
+      document.querySelector('.overlay').addEventListener('click', function(event) {
+        if (event.target === this) {
+          this.style.display = 'none';
+        }
+      });
     </script>
+    
   </body>
 </html>

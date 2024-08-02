@@ -16,15 +16,11 @@
         align-items: center;
         justify-content: center;
         min-height: 100vh;
-        /* background-color: #000000; */
         background-image: url("https://png.pngtree.com/background/20220718/original/pngtree-love-face-emoji-wallpaper-background-picture-image_1661640.jpg");
-        /* background-image: url("https://res.cloudinary.com/dzhpx2alw/image/upload/v1722547940/Screenshot_2024-08-02_030135_zty0bi.png"); */
-
-        background-size: cover; /* Ensures the background image covers the viewport */
-        background-position: center; /* Centers the background image */
-        background-attachment: fixed; /* Keeps the background fixed when scrolling */
-        background-repeat: no-repeat; /* Prevents the image from repeating */
-        opacity: 1;
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
       }
 
       .container {
@@ -34,7 +30,9 @@
         box-sizing: border-box;
         border-radius: 8px;
         box-shadow: 0 2px 4px rgb(255, 255, 255);
-        justify-content: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Center the items horizontally */
         opacity: 1;
       }
 
@@ -47,6 +45,7 @@
         border-radius: 4px;
         background-color: #fafafa;
         opacity: 1;
+        width: 100%; /* Ensure items take full width of the container */
       }
 
       @media (max-width: 600px) {
@@ -62,19 +61,15 @@
     </style>
   </head>
   <body>
-    <div style="background-color: #000000; width: 100%; flex: content">
+    <div style="background-color: #000000; width: 100%; display: flex; justify-content: center;">
       <img
         style="
           width: 200px;
-          background-color: #000000;
           height: 80px;
-          justify-content: center;
           aspect-ratio: 1;
-          padding-left: 25%;
-          /* padding-right:35%; */
         "
         src="https://res.cloudinary.com/dzhpx2alw/image/upload/v1722547940/Screenshot_2024-08-02_030135_zty0bi.png"
-        alt=""
+        alt="Logo"
       />
     </div>
 
@@ -93,31 +88,20 @@
         mere babu ne thana thayaaaaa🥺?
       </h1>
     </div>
-    <!-- <style>
-      @keyframes marquee {
-        0% {
-          transform: translateX(100%);
-        }
-        100% {
-          transform: translateX(-100%);
-        }
-      }
-    </style> -->
 
     <div
       style="
-        background-color: #ffffff62;
-        opacity: 1;
         width: 100%;
-        justify-content: center;
+        display: flex;
+        justify-content: center; /* Center the container horizontally */
       "
     >
       <div class="container">
         <% if (items && items.length) { %> <% items.forEach(function(item) { %>
-        <%- include('partials/card', { data: item }) %> <% }); %> <% } else { %>
+        <%- include('partials/card', { data: item }) %> <% }); %>
+        <% } else { %>
         <p>No items found.</p>
         <% } %>
-        <!-- <div style="height: 10px"></div> -->
       </div>
     </div>
   </body>
