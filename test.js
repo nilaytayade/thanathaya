@@ -17,10 +17,11 @@ const run = async () => {
   try {
     // Example: Create a new Mess document
     const newMess = new Mess({
-      name: "Example Mess4",
+      name: "Example Mess 77",
       contact: "1234567890",
-      location: "Example Location",
-      mess_photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/1200px-McDonald%27s_Golden_Arches.svg.png",
+      location: "KTF Tasty Food(Khanna Mess)",
+      mess_photo:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/1200px-McDonald%27s_Golden_Arches.svg.png",
       price: 500,
       menu_photo: [
         "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/restaurant-menu-poster-template-2859a5dbf631b5141f690a9d9736e99b_screen.jpg?ts=1689269431",
