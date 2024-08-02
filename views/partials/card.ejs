@@ -13,18 +13,18 @@
         font-family: "Roboto Condensed", sans-serif;
         margin: 0;
         padding: 0;
-        box-sizing: border-box;
       }
       .card {
         border: 1px solid #000000;
         padding: 16px;
         border-radius: 8px;
         max-width: 400px;
-        margin: 8px auto; /* Reduced margin between cards */
+        margin: 8px auto; /* Centered cards with reduced margin */
         background-color: #ffffff;
         opacity: 1;
         position: relative;
         overflow: hidden; /* Prevent excessive expansion */
+        box-sizing: border-box;
       }
       .card img {
         max-width: 100%;
@@ -56,10 +56,14 @@
         position: absolute;
         top: 32px; /* Adjusted from 16px */
         right: 16px;
-        max-width: 120px; /* Initial size */
-        max-height: 120px; /* Initial size */
+        max-width: 150px; /* Increased size */
+        max-height: 150px; /* Increased size */
         border-radius: 8px;
         cursor: pointer; /* Make the image expandable */
+      }
+
+      .spacer {
+        height: 120px; /* Matches the max-height of the top-right-image */
       }
       .overlay {
         position: fixed;
@@ -74,11 +78,13 @@
         z-index: 1000;
         display: none;
       }
+
       .overlay img {
         max-width: 90%;
         max-height: 90%;
         cursor: pointer; /* Make the image expandable */
       }
+
       .close-btn {
         position: absolute;
         top: 20px;
@@ -121,7 +127,7 @@
         height: 35px; /* Adjusted image size */
       }
       .price {
-        font-size: 22px; /* Increased font size */
+        font-size: 18px;
         font-weight: bold;
         color: #333;
         margin: 16px 0; /* Space above and below price */
@@ -150,9 +156,6 @@
           width: 25px; /* Adjust button icon size for small screens */
           height: 25px; /* Adjust button icon size for small screens */
         }
-        .price {
-          font-size: 18px; /* Adjust font size for small screens */
-        }
       }
     </style>
   </head>
@@ -167,10 +170,8 @@
         class="top-right-image"
         onclick="expandImage(this.src)"
       />
-      <div class="spacer" style="height: 120px;"></div>
-      <% } else { %>
-      <div class="spacer" style="height: 0;"></div>
       <% } %>
+      <div class="spacer"></div> <!-- Space for the logo -->
       <div class="button-container">
         <a
           href="https://wa.me/<%= data.contact %>"
