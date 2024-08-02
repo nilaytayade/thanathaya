@@ -21,6 +21,7 @@
         background-position: center;
         background-attachment: fixed;
         background-repeat: no-repeat;
+        overflow-x: hidden; /* Prevent horizontal scrolling */
       }
 
       .container {
@@ -49,6 +50,11 @@
       }
 
       @media (max-width: 600px) {
+        body {
+          background-size: cover;
+          background-attachment: scroll; /* Prevent background image from scrolling */
+        }
+
         .container {
           padding: 10px;
         }
@@ -94,6 +100,7 @@
         width: 100%;
         display: flex;
         justify-content: center; /* Center the container horizontally */
+        overflow-x: hidden; /* Prevent horizontal scrolling */
       "
     >
       <div class="container">
