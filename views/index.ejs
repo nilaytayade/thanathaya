@@ -24,7 +24,6 @@
       }
 
       .container {
-        max-width: 600px;
         width: 100%;
         padding: 20px;
         box-sizing: border-box;
@@ -61,14 +60,17 @@
     </style>
   </head>
   <body>
-    <div style="background-color: #000000; width: 100%; display: flex; justify-content: center;">
+    <div
+      style="
+        background-color: #000000;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      "
+    >
       <img
-        style="
-          width: 200px;
-          height: 80px;
-          aspect-ratio: 1;
-        "
-        src="https://res.cloudinary.com/dzhpx2alw/image/upload/v1722547940/Screenshot_2024-08-02_030135_zty0bi.png"
+        style="width: 300px; height: 150px; aspect-ratio: 1 ; padding-top: 15px;"
+        src="https://res.cloudinary.com/dzhpx2alw/image/upload/v1722616133/Screenshot_2024-08-02_215755_icushj.png"
         alt="Logo"
       />
     </div>
@@ -98,8 +100,7 @@
     >
       <div class="container">
         <% if (items && items.length) { %> <% items.forEach(function(item) { %>
-        <%- include('partials/card', { data: item }) %> <% }); %>
-        <% } else { %>
+        <%- include('partials/card', { data: item }) %> <% }); %> <% } else { %>
         <p>No items found.</p>
         <% } %>
       </div>
