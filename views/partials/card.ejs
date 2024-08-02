@@ -21,14 +21,14 @@
         margin: auto;
         position: relative;
         padding-bottom: 10px;
-        background-color: #ffffff;        
-        /* background-image: url("https://t4.ftcdn.net/jpg/03/78/97/59/360_F_378975954_G39M4ptXAjxKy80gbBIEo0wqBkk89gBF.jpg"); */
-
+        background-color: #ffffff;
+        opacity: 1;
       }
       .card img {
         max-width: 100%;
         border-radius: 8px;
         margin-bottom: 8px;
+        cursor: pointer;
       }
       .scrollable-images {
         display: flex;
@@ -52,6 +52,31 @@
         border-radius: 8px;
         max-height: 100px;
       }
+      .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        display: none;
+      }
+      .overlay img {
+        max-width: 90%;
+        max-height: 90%;
+      }
+      .close-btn {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 50px;
+        color: white;
+        cursor: pointer;
+      }
     </style>
   </head>
   <body>
@@ -69,11 +94,19 @@
       />
       <% } %> <% if (data.menu_photo && data.menu_photo.length > 0) { %>
       <div class="static-image">
-        <img src="<%= data.menu_photo[0] %>" alt="Static Image" />
+        <img
+          src="<%= data.menu_photo[0] %>"
+          alt="Static Image"
+          class="expandable-image"
+        />
       </div>
       <div class="scrollable-images">
         <% data.menu_photo.forEach((image, index) => { %> <% if (index > 0) { %>
-        <img src="<%= image %>" alt="Scrollable Image <%= index %>" />
+        <img
+          src="<%= image %>"
+          alt="Scrollable Image <%= index %>"
+          class="expandable-image"
+        />
         <% } %> <% }); %>
       </div>
       <% } %>
@@ -82,6 +115,32 @@
       <p>No data found.</p>
       <% } %>
     </div>
+    <div class="overlay">
+      <span class="close-btn">&times;</span>
+      <img src="" alt="Expanded Image" />
+    </div>
     <div style="height: 10px"></div>
+    <script>
+      document.querySelectorAll(".expandable-image").forEach((image) => {
+        image.addEventListener("click", function () {
+          document.querySelector(".overlay img").src = this.src;
+          document.querySelector(".overlay").style.display = "flex";
+        });
+      });
+
+      document
+        .querySelector(".close-btn")
+        .addEventListener("click", function () {
+          document.querySelector(".overlay").style.display = "none";
+        });
+
+      document
+        .querySelector(".overlay")
+        .addEventListener("click", function (e) {
+          if (e.target !== this.querySelector("img")) {
+            this.style.display = "none";
+          }
+        });
+    </script>
   </body>
 </html>

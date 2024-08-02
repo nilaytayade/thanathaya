@@ -58,10 +58,6 @@ app.get("/", async (req, res) => {
   }
 });
 
-app.get("/form", (req, res) => {
-  res.render("form");
-});
-
 app.listen(3000, "0.0.0.0", () => {
   console.log(`Server running at http://0.0.0.0:${3000}/`);
 });
