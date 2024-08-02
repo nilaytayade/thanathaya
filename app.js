@@ -3,7 +3,6 @@ const app = express();
 const path = require("path");
 const multer = require("multer");
 
-
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "uploads/");
@@ -12,6 +11,8 @@ const storage = multer.diskStorage({
     cb(null, Date.now() + path.extname(file.originalname));
   },
 });
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 const mongoose = require("mongoose");
 const Mess = require("./models/mess");
@@ -57,6 +58,34 @@ app.get("/", async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 });
+
+app.get("/form", (req, res) => {
+  res.render("form", {
+    cloudinaryCloudName: "dzhpx2alw",
+    cloudinaryApiKey: "744786929442933",
+  });
+});
+
+app.post("/submit", (req, res) => {
+  const { imageUrl1, imageUrl2, imageUrl3, imageUrl4, price, description } =
+    req.body;
+
+  // Log the received data (for debugging)
+  console.log({
+    imageUrl1,
+    imageUrl2,
+    imageUrl3,
+    imageUrl4,
+    price,
+    description,
+  });
+
+  // Here you would typically handle the data, e.g., save it to a database
+
+  // Send a response
+  res.send("Form submitted successfully!");
+});
+
 
 app.listen(3000, () => {
   console.log(`Server running at http://localhost:${3000}/`);
