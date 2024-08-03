@@ -21,39 +21,29 @@
         background-position: center;
         background-attachment: fixed;
         background-repeat: no-repeat;
-        overflow-x: hidden; /* Prevent horizontal scrolling */
       }
 
       .container {
         width: 100%;
-        padding: 20px;
+        max-width: 800px;
         box-sizing: border-box;
         border-radius: 8px;
-        box-shadow: 0 2px 4px rgb(255, 255, 255);
         display: flex;
         flex-direction: column;
-        align-items: center; /* Center the items horizontally */
+        align-items: center;
         opacity: 1;
       }
 
       .item {
         border: 1px solid #000000;
         box-sizing: border-box;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        padding: 10px;
         margin: 10px 0;
         border-radius: 4px;
-        background-color: #fafafa;
         opacity: 1;
-        width: 100%; /* Ensure items take full width of the container */
+        width: 100%;
       }
 
       @media (max-width: 600px) {
-        body {
-          background-size: cover;
-          background-attachment: scroll; /* Prevent background image from scrolling */
-        }
-
         .container {
           padding: 10px;
         }
@@ -63,38 +53,42 @@
           margin: 8px 0;
         }
       }
-    </style>
-  </head>
-  <body>
-    <div
-      style="
+
+      .header {
         background-color: #000000;
         width: 100%;
         display: flex;
         justify-content: center;
-      "
-    >
+        align-items: center;
+        padding: 15px 0;
+        box-sizing: border-box;
+      }
+
+      .header img {
+        width: 300px;
+        height: 150px;
+      }
+
+      .centered-text {
+        background-color: #000000;
+        color: #ffffff;
+        /* padding: 10px; */
+        text-align: center;
+        width: 100%;
+        font-size: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
       <img
-        style="width: 300px; height: 150px; aspect-ratio: 1 ; padding-top: 15px;"
         src="https://res.cloudinary.com/dzhpx2alw/image/upload/v1722616133/Screenshot_2024-08-02_215755_icushj.png"
         alt="Logo"
       />
     </div>
 
-    <div style="overflow: hidden">
-      <h1
-        style="
-          white-space: nowrap;
-          margin: 0;
-          animation: marquee 6s linear infinite;
-          font-size: 20px;
-          color: #ffffff;
-          background-color: #000000;
-          width: 100%;
-        "
-      >
-        mere babu ne thana thayaaaaa🥺?
-      </h1>
+    <div class="centered-text">
+      mere babu ne thana thayaaaaa🥺?
     </div>
 
     <div
@@ -102,13 +96,17 @@
         width: 100%;
         display: flex;
         justify-content: center; /* Center the container horizontally */
-        overflow-x: hidden; /* Prevent horizontal scrolling */
       "
     >
       <div class="container">
-        <% if (items && items.length) { %> <% items.forEach(function(item) { %>
-        <%- include('partials/card', { data: item }) %> <% }); %> <% } else { %>
-        <p>No items found.</p>
+        <% if (items && items.length) { %>
+          <% items.forEach(function(item) { %>
+            <div class="item">
+              <%- include('partials/card', { data: item }) %>
+            </div>
+          <% }); %>
+        <% } else { %>
+          <p>No items found.</p>
         <% } %>
       </div>
     </div>
