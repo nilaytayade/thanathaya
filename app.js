@@ -87,6 +87,6 @@ app.post("/submit", (req, res) => {
 });
 
 
-app.listen(3000,"0.0.0.0", () => {
+app.listen(3000, () => {
   console.log(`Server running at http://localhost:${3000}/`);
 });
